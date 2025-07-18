@@ -24,6 +24,8 @@ export async function createProductController(
 
   const files = request.files as Express.Multer.File[] | undefined;
 
+  console.log(files)
+
   if (!files || files.length === 0) {
     throw new BadRequestError("At least one image must be uploaded.");
   }

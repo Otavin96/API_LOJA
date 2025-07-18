@@ -11,15 +11,19 @@ import { uploadMultipleImages } from "../middlewares/uploadImages";
 
 const productRouter = Router();
 
-productRouter.post("/", uploadMultipleImages, async (req, res) => {
-  createProductController(req, res);
+productRouter.post("/", uploadMultipleImages, async (req, res, next) => {
+  try {
+    await createProductController(req, res);
+  } catch (error) {
+    next(error);
+  }
 });
 
 // productRouter.get("/", isAuth, async (req, res) => {
 //   listAllProductController(req, res);
 // });
 
-productRouter.get("/:id", async (req, res) => {
+productRouter.get("/:id", async (req, res, next) => {
   getProductController(req, res);
 });
 

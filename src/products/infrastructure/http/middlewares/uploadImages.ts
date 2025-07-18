@@ -4,7 +4,7 @@ import multer from "multer";
 const multerUpload = multer({
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: 1024 * 1024 * 5, // 5MB por arquivo
+    fileSize: 1024 * 1024 * 10, // 5MB por arquivo
   },
   fileFilter: (request, file, callback) => {
     const allowedMimes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
