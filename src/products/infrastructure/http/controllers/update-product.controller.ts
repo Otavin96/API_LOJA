@@ -15,8 +15,9 @@ export async function updateProductController(
   const updateCategorySchemaBody = z.object({
     name: z.string().optional(),
     description: z.string().optional(),
-    price: z.number().positive().optional(),
-    quantity: z.number().positive().optional(),
+    price: z.coerce.number().optional(),
+    quantity: z.coerce.number().optional(),
+    category_id: z.string().optional()
   });
 
   const { id } = dataValidation(updateProductSchemaParam, request.params);
@@ -26,9 +27,20 @@ export async function updateProductController(
     request.body
   );
 
-  const sku = Math.floor(Math.random() * 1000) as unknown as string;
+  const files = request.files as Express.Multer.File[];
 
-  container.resolve("ProductRepository");
+  let images
+
+  if (files) {
+    images = files.map((file) => ({
+      filename: file.originalname,
+      filetype: file.mimetype,
+      filesize: file.size,
+      body: file.buffer,
+    }));
+  }
+
+  const sku = String(Math.floor(Math.random() * 1000));
 
   const updateProductsUseCase: UpdateProductsUseCase.UseCase =
     container.resolve("UpdateProductsUseCase");
@@ -41,6 +53,7 @@ export async function updateProductController(
     price,
     quantity,
     category_id,
+    images,
   });
 
   response.status(200).json(product);

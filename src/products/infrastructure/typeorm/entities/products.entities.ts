@@ -39,7 +39,7 @@ export class Product {
     onUpdate: "CASCADE",
   })
   @JoinColumn({ name: "category_id" })
-  category_id: Category;
+  category_id: string;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;

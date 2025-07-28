@@ -37,7 +37,8 @@ export async function createProductController(
     body: file.buffer,
   }));
 
-  const sku = Math.floor(Math.random() * 1000).toString();
+  const sku = String(Math.floor(Math.random() * 1000));
+
 
   const createProductsUseCase: CreateProductsUseCase.UseCase =
     container.resolve("CreateProductsUseCase");

@@ -6,9 +6,6 @@ import { productRouter } from "@/products/infrastructure/http/routes/products.ro
 
 const routes = Router();
 
-routes.get("/", (req, res) => {
-    res.send("Ola Mundo!")
-})
 routes.use("/category", categoriesRouter);
 routes.use("/client", clientRouter);
 routes.use("/product", productRouter);

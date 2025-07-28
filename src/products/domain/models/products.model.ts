@@ -8,7 +8,7 @@ export interface ProductsModel {
   price: number;
   images: string[];
   quantity?: number;
-  category_id: Category;
+  category_id: string;
   created_at: Date;
   updated_at: Date;
 }

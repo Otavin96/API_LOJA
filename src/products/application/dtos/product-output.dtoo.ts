@@ -8,7 +8,7 @@ export type ProductOutput = {
   price: number;
   quantity?: number;
   images: string[];
-  category_id: Category;
+  category_id: string;
   created_at: Date;
   updated_at: Date;
 };

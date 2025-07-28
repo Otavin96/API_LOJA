@@ -1,4 +1,3 @@
-import { Category } from "@/categories/infrastructure/typeorm/entities/category.entities";
 import { ProductOutput } from "../dtos/product-output.dtoo";
 import { inject, injectable } from "tsyringe";
 import { ProductsRepository } from "@/products/repositories/products.repository";
@@ -19,7 +18,7 @@ export namespace CreateProductsUseCase {
       filetype: string;
       body: Buffer;
     }[];
-    category_id: Category;
+    category_id: string;
   };
 
   export type Output = ProductOutput;

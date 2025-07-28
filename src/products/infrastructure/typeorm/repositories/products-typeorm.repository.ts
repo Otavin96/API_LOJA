@@ -98,6 +98,7 @@ export class ProductsTypeormRepository implements ProductsRepository {
 
     const [products, total] = await this.productsRepository.findAndCount({
       ...(props.filter && { where: { name: ILike(props.filter) } }),
+      relations: ["category_id"],
       order: { [orderByField]: orderByDir },
       skip: ((props.page ?? 1) - 1) * (props.per_page ?? 5),
       take: props.per_page,

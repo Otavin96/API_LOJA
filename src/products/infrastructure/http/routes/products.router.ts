@@ -7,6 +7,7 @@ import { deleteProductController } from "../controllers/delete-product.controlle
 import { isAuth } from "@/common/infrastructure/http/middlewares/isAuth";
 import { SearchProductController } from "../controllers/search-product.controller";
 import { uploadMultipleImages } from "../middlewares/uploadImages";
+import { errorHandler } from "@/common/infrastructure/http/middlewares/errorHandler";
 
 
 const productRouter = Router();
@@ -33,7 +34,7 @@ productRouter.get("/category/:category_id", async (req, res) => {
   listAllProductController(req, res);
 });
 
-productRouter.put("/:id", async (req, res) => {
+productRouter.put("/:id", uploadMultipleImages, async (req, res) => {
   updateProductController(req, res);
 });
 
